@@ -103,7 +103,7 @@ class composer(
       $method_package = $curl_package
     }
     'wget': {
-      $download_command = "wget -qO- https://getcomposer.org/installer | ${composer::php_bin}"
+      $download_command = 'wget https://getcomposer.org/composer.phar -O composer.phar'
       $download_require = $suhosin_enabled ? {
         false   => [ Package['wget', $php_package] ],
         default => [
@@ -138,7 +138,6 @@ class composer(
       cwd       => $tmp_path,
       require   => $download_require,
       creates   => "${tmp_path}/composer.phar",
-      logoutput => $logoutput,
       environment => "COMPOSER_HOME={$composer_home}",
     }
     # move file to target_dir
