@@ -85,7 +85,7 @@ class composer(
   Exec { path => "/bin:/usr/bin/:/sbin:/usr/sbin:${target_dir}" }
 
   # Only install php package if it's not defined
-  if defined(Package[$php_package]) == false {
+  if !defined(Package[$php_package]) {
     package { $php_package: ensure => present, }
   }
 
