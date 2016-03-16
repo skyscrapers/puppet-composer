@@ -138,7 +138,7 @@ class composer(
       cwd       => $tmp_path,
       require   => $download_require,
       creates   => "${tmp_path}/composer.phar",
-      logoutput => $logoutput,
+      environment => "COMPOSER_HOME={$composer_home}",
     }
     # move file to target_dir
     file { "${target_dir}/${composer_file}":
